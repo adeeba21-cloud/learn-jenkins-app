@@ -25,7 +25,9 @@ pipeline {
                 }
                 
             
-        }stage('Test'){
+        }
+        stage('Test')
+        {
              agent{
                     docker{
                         image 'node:18-alpine'
@@ -33,7 +35,7 @@ pipeline {
                     }
                 }
              steps{
-                sh'''
+                sh '''
                 if test -f build/index.html; then
                   echo "File exists"
                 else
