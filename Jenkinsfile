@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build') 
             {
                 agent{
                     docker{
@@ -11,7 +11,7 @@ pipeline {
                     }
                 }
             
-            steps {
+                steps {
                 sh '''
                 ls -la
                 node --version
@@ -22,7 +22,7 @@ pipeline {
 
                 '''
 
-            }
+                }
             
         }
     }
