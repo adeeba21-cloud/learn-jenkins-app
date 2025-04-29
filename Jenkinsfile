@@ -61,9 +61,12 @@ pipeline {
              steps{
                 sh '''
                 npm install -g serve
-               node_modules/serve-static -s build &
+                node_modules/serve-index -s build &
+               SERVER_PID=$!
                sleep 10
                 npx playwright test
+                kill $SERVER_PID
+                exit $EXIT_CODE
 
                 '''
              }
