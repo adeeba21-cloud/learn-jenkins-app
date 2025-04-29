@@ -61,7 +61,7 @@ pipeline {
              steps{
                 sh '''
                 npm install -g serve
-                node_modules/serve-index -s build &
+               npx serve -s build > /dev/null 2>&1 &
                SERVER_PID=$!
                sleep 10
                 npx playwright test
