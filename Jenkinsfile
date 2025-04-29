@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        /*
+        
         stage('Build') 
             {
                 agent{
@@ -22,11 +22,13 @@ pipeline {
                 ls -la
 
                 '''
+                 stash includes: 'build/**', name: 'react-build'
 
                 }
+
                 
             
-        }*/
+        }
         stage('Test')
         {
              agent{
@@ -58,6 +60,7 @@ pipeline {
         }
     }
     steps {
+        unstash 'react-build'
         sh '''
         echo "🌐 Installing serve..."
         npm install -g serve
