@@ -65,6 +65,7 @@ pipeline {
                SERVER_PID=$!
                sleep 10
                 npx playwright test
+                TEST_EXIT_CODE=$?
                 kill $SERVER_PID
                 exit $EXIT_CODE
 
