@@ -22,7 +22,7 @@ pipeline {
                 ls -la
 
                 '''
-                 stash includes: 'build/**', name: 'react-build'
+                 
 
                 }
 
@@ -61,7 +61,7 @@ pipeline {
         }
     }
     steps {
-        unstash 'react-build'
+       
         sh '''
         echo "🌐 Installing serve..."
         npm install -g serve
