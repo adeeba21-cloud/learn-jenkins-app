@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+            checkout scm
+            }
+        }
         
         stage('Build') 
             {
@@ -23,10 +28,11 @@ pipeline {
 
                 '''
                 }
+            }
 
                 
             
-        }
+        
         stage('Test')
         {
              agent{
@@ -51,10 +57,9 @@ pipeline {
         }
 
         stage('E2E') {
-    agent {
+          agent {
         docker {
-            image "mcr.microsoft.com/playwright:v1.39.0-focal"
-'
+            image 'mcr.microsoft.com/playwright:v1.39.0-focal'
             reuseNode true
         }
     }
@@ -88,18 +93,18 @@ pipeline {
         exit $TEST_EXIT_CODE
         '''
     }
-}
+    }
 
     }
     post {
          always {
             junit 'jest-results/junit.xml'
         }
-        }
-    
+    }    
+}   
 
-    
-}
+
+
 
 
 
